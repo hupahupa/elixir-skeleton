@@ -1,0 +1,10 @@
+<%- log_dir = node[:skeleton][:log_dir] -%>
+<%- site_dir = node[:skeleton][:site_dir] -%>
+<%- flask_port = node[:skeleton][:flask_port] -%>
+<%- num_workers = node[:skeleton][:num_workers] -%>
+
+bind = 'localhost:<%= flask_port %>'
+workers = <%= num_workers %>
+proc_name = 'skeleton'
+accesslog = '<%= log_dir %>/g_access.log'
+errorlog = '<%= log_dir %>/g_error.log'

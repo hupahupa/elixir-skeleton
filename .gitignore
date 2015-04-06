@@ -1,0 +1,14 @@
+*.pyc
+*.swp
+*~
+.DS_Store
+/.cache
+/.vagrant
+/css-sync
+/logs
+/scripts
+/flaskconfig.py
+/migrations
+/config/db.json
+/static/dest/*
+/config/flaskconfig.py

@@ -1,0 +1,55 @@
+{
+  "name": "new-frontend-skeleton",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "browserify": "=8.0.1",
+    "browserify-shim": "^3.8.3",
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "gulp-jshint": "^1.9.2",
+    "gulp-less": "^3.0.1",
+    "gulp-livereload": "^3.8.0",
+    "gulp-minify-css": "^1.0.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-uglify": "^1.1.0",
+    "gulp-util": "^3.0.4",
+    "jshint-stylish": "^1.0.1",
+    "less": "^1.7.4",
+    "literalify": "^0.4.0",
+    "lodash": "^3.5.0",
+    "merge-stream": "^0.1.7",
+    "node-notifier": "^4.1.2",
+    "q": "^1.2.0",
+    "vinyl-transform": "^1.0.0",
+    "watchify": "^2.4.0"
+  },
+  "browser": {},
+  "browserify-shim": {
+    "jquery": "global:$"
+  },
+  "customConfig": {
+    "sourcePath": "./source",
+    "destPath": "../static/dest",
+    "libFiles": [
+      "./bower/jquery/dist/jquery.js",
+      "./bower/bootstrap/dist/js/bootstrap.js"
+    ],
+    "assets": {
+      "./bower/bootstrap/fonts/**/*.*": "../static/dest/css/fonts",
+      "./bower/fontawesome/fonts/**/*.*": "../static/dest/css/fontawesome/fonts"
+    },
+    "symlinks": {
+      "./bower": "./source/less/share/bower"
+    }
+  }
+}

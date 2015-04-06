@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# install dependencies
+npm install
+
+gulp clean
+
+<% if node[:skeleton][:environment] == 'prod' %>
+gulp prod
+<% else %>
+gulp dev
+<% end %>
