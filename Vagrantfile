@@ -61,7 +61,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 :log_dir => '/vagrant/logs',
                 :server_names => [ 'localhost' ],
                 :site_dir => '/vagrant',
-            }            
+            },
+            :elixir => {
+                :version => '1.0.3'
+            }
         }
 
         chef.add_recipe 'vagrant'
