@@ -1,0 +1,17 @@
+---
+table: tbl_user
+from: null
+to: txt_1
+sql: |
+  CREATE TYPE USER_STATUS_ENUM AS ENUM ('pending', 'active');
+  CREATE TABLE tbl_user (
+    id SERIAL NOT NULL PRIMARY KEY,
+    full_name TEXT,
+    email TEXT,
+    password TEXT,
+    secret_token TEXT,
+    status USER_STATUS_ENUM DEFAULT 'pending',
+    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),
+    UNIQUE(secret_token),
+    UNIQUE(email)
+  );

@@ -1,0 +1,14 @@
+---
+table: tbl_user_role
+from: null
+to: txt_1
+depends:
+  - ["tbl_user", txt_1]
+sql: |
+  CREATE TYPE USER_ROLE_ROLE_ENUM AS ENUM ('user', 'admin');
+  CREATE TABLE tbl_user_role (
+    id SERIAL NOT NULL PRIMARY KEY,
+    user_id INT REFERENCES tbl_user(id) ON DELETE CASCADE,
+    role USER_ROLE_ROLE_ENUM DEFAULT 'user',
+    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW()
+  );

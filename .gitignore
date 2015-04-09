@@ -4,28 +4,22 @@
 .DS_Store
 /.cache
 /.vagrant
-/css-sync
 /logs
 /scripts
-/flaskconfig.py
-/migrations
 /config/db.json
-/static/dest/*
-/config/flaskconfig.py
 # Mix artifacts
-/_build
-/deps
+/app/_build
+/app/deps
 /*.ez
 
 # Generate on crash by the VM
 erl_crash.dump
 
 # Static artifacts
-/node_modules
 
 # Since we are building js and css from web/static,
 # we ignore priv/static/{css,js}. You may want to
 # comment this depending on your deployment strategy.
-/priv/static/css
-/priv/static/js
-/chef/site-cookbooks/skeleton.bk/
+/app/priv/static/css
+/app/priv/static/js
+/app/priv/static/uploads

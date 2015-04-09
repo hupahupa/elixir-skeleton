@@ -42,7 +42,7 @@ end
 end
 
 dirs = [
-    "priv/static/uploads",
+    "app/priv/static/uploads",
 ]
 dirs.each do |component|
 
@@ -81,7 +81,7 @@ template "#{script_dir}/deploy.sh" do
 end
 
 #db config
-template "#{site_dir}/config/db.json" do
+template "#{site_dir}/app/config/db.json" do
     source 'db.json.erb'
     mode '644'
 end
@@ -107,12 +107,12 @@ end
 # end
 
 # Install schemup dependencies
-#bash 'install schemup dependencies' do
-#    code <<-EOH
-#        . #{python_env}/bin/activate
-#        pip install -r #{site_dir}/schema/requirements.txt
-#    EOH
-#end
+bash 'install schemup dependencies' do
+   code <<-EOH
+       . #{python_env}/bin/activate
+       pip install -r #{site_dir}/schema/requirements.txt
+   EOH
+end
 
 #bash 'run schemup' do
 #    cwd "#{site_dir}/schema"
@@ -130,13 +130,14 @@ template "/etc/nginx/sites-available/#{site_name}" do
     notifies :restart, 'service[nginx]'
 end
 
-nginx_site 'default' do
-    action :disable
+nginx_site site_name do
+    enable true
 end
 
-nginx_site site_name do
-    action :enable
+nginx_site 'default' do
+    enable false
 end
+
 
 template "/etc/logrotate.d/#{site_name}" do
     source 'logrotate.erb'

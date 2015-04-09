@@ -7,10 +7,6 @@
 cd <%= site_dir %>/schema
 python update.py commit
 
-#compile again the translation
-cd <%= site_dir %>
-pybabel compile -f -d skeleton/translations
-
 <% if env == 'local' -%>
 sudo service <%= node[:skeleton][:app_name] %> restart
 <% end -%>
