@@ -1,0 +1,44 @@
+<%- skeleton = node[:skeleton] -%>
+<%- site_name = skeleton[:site_name] -%>
+<%- server_names = skeleton[:server_names] -%>
+<%- log_dir = skeleton[:log_dir] -%>
+<%- site_dir = skeleton[:site_dir] -%>
+<%- server_aliases = skeleton[:server_aliases] -%>
+
+upstream backend {
+  server 127.0.0.1:4000;
+}
+
+server {
+
+    listen              80;
+    server_name         <%= server_names.join(' ') %>;
+    root                <%= site_dir %>;
+    access_log          <%= log_dir %>/access.log;
+    error_log           <%= log_dir %>/error.log;
+
+
+    location / {
+        try_files $uri/index.html $uri @elixir_app;
+    }
+
+
+    location ~ /(\.|Vagrantfile|chef) {
+        # Protect code files
+        return 444;
+    }
+
+    <%- if skeleton[:blocked_keywords] -%>
+    location ~* (<%= skeleton[:blocked_keywords].join("|") %>) {
+        return 444;
+    }
+    <%- end -%>
+
+    location @elixir_app {
+        proxy_set_header Host $http_host;
+        if (!-f $request_filename) {
+          proxy_pass http://backend;
+          break;
+        }
+    }
+}

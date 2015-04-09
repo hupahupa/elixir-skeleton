@@ -1,3 +1,4 @@
+default[:skeleton][:site_name] = 'skeleton'
 default[:skeleton][:app_name] = 'skeleton'
 default[:skeleton][:app_user] = 'skeleton'
 default[:skeleton][:db][:database] = 'skeleton'

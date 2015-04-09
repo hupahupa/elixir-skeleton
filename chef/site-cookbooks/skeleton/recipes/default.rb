@@ -95,23 +95,16 @@ python_virtualenv python_env do
     action :create
 end
 
-# Installing from requirements.txt
-bash 'install python dependencies' do
-    code <<-EOH
-        . #{python_env}/bin/activate
-        pip install -r #{site_dir}/requirements.txt
-    EOH
-end
 
 # Install nodejs dependencies
 execute 'Install nodejs dependencies' do
     command 'npm install -g bower gulp browserify'
 end
 
-service site_name do
-    provider Chef::Provider::Service::Upstart
-    action [:enable, :start]
-end
+# service site_name do
+#     provider Chef::Provider::Service::Upstart
+#     action [:enable, :start]
+# end
 
 # Install schemup dependencies
 #bash 'install schemup dependencies' do
@@ -129,19 +122,20 @@ end
 #    EOH
 #end
 
+
 # Nginx
 template "/etc/nginx/sites-available/#{site_name}" do
     source 'nginx_skeleton.erb'
     mode '644'
-    notifies :reload, 'service[nginx]'
+    notifies :restart, 'service[nginx]'
+end
+
+nginx_site 'default' do
+    action :disable
 end
 
 nginx_site site_name do
     action :enable
-end
-
-nginx_site 'default' do
-    enable false
 end
 
 template "/etc/logrotate.d/#{site_name}" do

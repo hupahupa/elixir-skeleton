@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     http_port = 9500
     ssh_port = 9501    
 
-    config.vm.network :forwarded_port, guest: 4000, host: http_port
+    config.vm.network :forwarded_port, guest: 80, host: http_port
     config.vm.network :forwarded_port, guest: 22, host: ssh_port, id: "ssh", auto_correct: true    
 
     # apt wants the partial folder to be there
