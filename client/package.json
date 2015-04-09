@@ -1,5 +1,5 @@
 {
-  "name": "new-frontend-skeleton",
+  "name": "Elixir App",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -39,14 +39,14 @@
   },
   "customConfig": {
     "sourcePath": "./source",
-    "destPath": "../static/dest",
+    "destPath": "../priv/static/resource",
     "libFiles": [
       "./bower/jquery/dist/jquery.js",
       "./bower/bootstrap/dist/js/bootstrap.js"
     ],
     "assets": {
-      "./bower/bootstrap/fonts/**/*.*": "../static/dest/css/fonts",
-      "./bower/fontawesome/fonts/**/*.*": "../static/dest/css/fontawesome/fonts"
+      "./bower/bootstrap/fonts/**/*.*": "../priv/static/resource/css/fonts",
+      "./bower/fontawesome/fonts/**/*.*": "../priv/static/resource/css/fontawesome/fonts"
     },
     "symlinks": {
       "./bower": "./source/less/share/bower"
