@@ -10,3 +10,4 @@
 include_recipe 'apt'
 include_recipe 'git'
 include_recipe 'elixir'
+include_recipe 'nodejs'
