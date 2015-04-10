@@ -1,5 +1,5 @@
 #!/bin/sh
 
 cd <%= node[:skeleton][:site_dir] %>/app
-mix do deps.get, compile
+yes Y | mix do deps.get, compile
 sudo service <%= node[:skeleton][:app_name] %> restart
