@@ -1,5 +1,5 @@
 {
-  "name": "Elixir App",
+  "name": "ElixirApp",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -39,14 +39,14 @@
   },
   "customConfig": {
     "sourcePath": "./source",
-    "destPath": "../priv/static/resource",
+    "destPath": "../app/priv/static/resource",
     "libFiles": [
       "./bower/jquery/dist/jquery.js",
       "./bower/bootstrap/dist/js/bootstrap.js"
     ],
     "assets": {
-      "./bower/bootstrap/fonts/**/*.*": "../priv/static/resource/css/fonts",
-      "./bower/fontawesome/fonts/**/*.*": "../priv/static/resource/css/fontawesome/fonts"
+      "./bower/bootstrap/fonts/**/*.*": "../app/priv/static/resource/css/fonts",
+      "./bower/fontawesome/fonts/**/*.*": "../app/priv/static/resource/css/fontawesome/fonts"
     },
     "symlinks": {
       "./bower": "./source/less/share/bower"

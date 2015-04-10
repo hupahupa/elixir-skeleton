@@ -1,4 +1,11 @@
 #!/bin/bash
 
 . <%= node[:skeleton][:python][:virtualenv] %>/bin/activate
+. <%= node[:skeleton][:site_dir] %>/scripts/set_env.sh
 
+set -e
+
+bin_dir="$(cd "$(dirname "$0")/.."; pwd)"
+cd "$bin_dir/app"
+
+exec mix phoenix.server >> <%= node[:skeleton][:log_dir] %>/app.log

@@ -11,4 +11,9 @@ export PGHOST=$DB_HOST
 export PGUSER=$DB_USER
 export PGPASSWORD=$DB_PASS
 
+
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 . <%= node[:skeleton][:python][:virtualenv] %>/bin/activate

@@ -4,12 +4,12 @@ defmodule App.Endpoint do
     # Serve at "/" the given assets from "priv/static" directory
     plug Plug.Static,
         at: "/", from: :app,
-        only: ~w(css images js favicon.ico robots.txt)
+        only: ~w(resource images favicon.ico robots.txt)
 
     # Code reloading can be explicitly enabled under the
     # :code_reloader configuration of your endpoint.
     if code_reloading? do
-        plug Phoenix.LiveReloader
+        # plug Phoenix.LiveReloader
         plug Phoenix.CodeReloader
     end
 

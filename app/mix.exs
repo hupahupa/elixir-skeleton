@@ -28,7 +28,7 @@ defmodule App.Mixfile do
          {:phoenix_ecto, "~> 0.3"},
          {:postgrex, ">= 0.0.0"},
          # TODO bump to 0.3 for phoenix 0.11 release
-         {:phoenix_live_reload, "~> 0.3"},
+         # {:phoenix_live_reload, "~> 0.3"},
          {:cowboy, "~> 1.0"}]
     end
 end

@@ -3,6 +3,8 @@ include_recipe 'apt'
 include_recipe 'nginx'
 include_recipe 'git'
 include_recipe 'python'
+include_recipe 'nginx'
+include_recipe 'postgresql::client'
 include_recipe 'elixir'
 include_recipe 'nodejs'
 
@@ -42,12 +44,10 @@ end
 end
 
 dirs = [
-    "app/priv/static/uploads",
+    "app/priv/static/images/uploads",
 ]
 dirs.each do |component|
-
     the_dir = "#{site_dir}/#{component}"
-
     bash 'setup permissions' do
         code <<-EOH
             mkdir -p #{the_dir}
@@ -80,6 +80,11 @@ template "#{script_dir}/deploy.sh" do
     mode '755'
 end
 
+template "#{script_dir}/restart.sh" do
+    source 'restart.sh.erb'
+    mode '755'
+end
+
 #db config
 template "#{site_dir}/app/config/db.json" do
     source 'db.json.erb'
@@ -95,16 +100,23 @@ python_virtualenv python_env do
     action :create
 end
 
-
 # Install nodejs dependencies
 execute 'Install nodejs dependencies' do
     command 'npm install -g bower gulp browserify'
 end
 
-# service site_name do
-#     provider Chef::Provider::Service::Upstart
-#     action [:enable, :start]
+# compile all elixir dependencies
+# bash 'compile all elixir dependencies' do    
+#     cwd "#{site_dir}/app"
+#     code <<-EOH        
+#         mix do deps.get, compile
+#     EOH
 # end
+
+service site_name do
+    provider Chef::Provider::Service::Upstart
+    action [:enable, :start]
+end
 
 # Install schemup dependencies
 bash 'install schemup dependencies' do
