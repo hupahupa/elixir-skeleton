@@ -7,6 +7,7 @@ include_recipe 'nginx'
 include_recipe 'postgresql::client'
 include_recipe 'elixir'
 include_recipe 'nodejs'
+include_recipe 'skeleton::database'
 
 skeleton = node[:skeleton]
 app_user = skeleton[:app_user]
@@ -106,12 +107,13 @@ execute 'Install nodejs dependencies' do
 end
 
 # compile all elixir dependencies
-# bash 'compile all elixir dependencies' do    
-#     cwd "#{site_dir}/app"
-#     code <<-EOH        
-#         mix do deps.get, compile
-#     EOH
-# end
+bash 'compile all elixir dependencies' do    
+    user app_user
+    cwd "#{site_dir}/app"
+    code <<-EOH        
+        yes Y | mix do deps.get, compile        
+    EOH
+end
 
 service site_name do
     provider Chef::Provider::Service::Upstart
